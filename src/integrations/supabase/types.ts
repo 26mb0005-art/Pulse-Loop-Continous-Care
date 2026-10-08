@@ -708,6 +708,7 @@ export type Database = {
         Args: { _category: string; _pid: string }
         Returns: boolean
       }
+      claim_demo_patient: { Args: never; Returns: boolean }
       consultant_review: {
         Args: {
           _followup: boolean
@@ -753,6 +754,7 @@ export type Database = {
         }
         Returns: string
       }
+      reset_demo_patient: { Args: never; Returns: undefined }
       set_consent: {
         Args: { _category: string; _status: string }
         Returns: undefined

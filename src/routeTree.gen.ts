@@ -10,33 +10,266 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as ConsultantRouteImport } from './routes/consultant'
+import { Route as InsurerRouteImport } from './routes/insurer'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as PharmacyRouteImport } from './routes/pharmacy'
+import { Route as SelectRoleRouteImport } from './routes/select-role'
+import { Route as SignInRouteImport } from './routes/sign-in'
+import { Route as SignUpRouteImport } from './routes/sign-up'
+import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as AppCareRouteImport } from './routes/app/care'
+import { Route as AppMealRouteImport } from './routes/app/meal'
+import { Route as AppPharmacyRouteImport } from './routes/app/pharmacy'
+import { Route as AppPrivacyRouteImport } from './routes/app/privacy'
+import { Route as AppRecordsRouteImport } from './routes/app/records'
+import { Route as ConsultantIndexRouteImport } from './routes/consultant/index'
+import { Route as InsurerIndexRouteImport } from './routes/insurer/index'
+import { Route as PharmacyIndexRouteImport } from './routes/pharmacy/index'
+import { Route as ConsultantPatientsPatientIdRouteImport } from './routes/consultant/patients.$patientId'
+import { Route as PharmacyOrdersOrderIdRouteImport } from './routes/pharmacy/orders.$orderId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsultantRoute = ConsultantRouteImport.update({
+  id: '/consultant',
+  path: '/consultant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsurerRoute = InsurerRouteImport.update({
+  id: '/insurer',
+  path: '/insurer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PharmacyRoute = PharmacyRouteImport.update({
+  id: '/pharmacy',
+  path: '/pharmacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SelectRoleRoute = SelectRoleRouteImport.update({
+  id: '/select-role',
+  path: '/select-role',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignInRoute = SignInRouteImport.update({
+  id: '/sign-in',
+  path: '/sign-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignUpRoute = SignUpRouteImport.update({
+  id: '/sign-up',
+  path: '/sign-up',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCareRoute = AppCareRouteImport.update({
+  id: '/care',
+  path: '/care',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMealRoute = AppMealRouteImport.update({
+  id: '/meal',
+  path: '/meal',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPharmacyRoute = AppPharmacyRouteImport.update({
+  id: '/pharmacy',
+  path: '/pharmacy',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPrivacyRoute = AppPrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRecordsRoute = AppRecordsRouteImport.update({
+  id: '/records',
+  path: '/records',
+  getParentRoute: () => AppRoute,
+} as any)
+const ConsultantIndexRoute = ConsultantIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ConsultantRoute,
+} as any)
+const InsurerIndexRoute = InsurerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => InsurerRoute,
+} as any)
+const PharmacyIndexRoute = PharmacyIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PharmacyRoute,
+} as any)
+const ConsultantPatientsPatientIdRoute =
+  ConsultantPatientsPatientIdRouteImport.update({
+    id: '/patients/$patientId',
+    path: '/patients/$patientId',
+    getParentRoute: () => ConsultantRoute,
+  } as any)
+const PharmacyOrdersOrderIdRoute = PharmacyOrdersOrderIdRouteImport.update({
+  id: '/orders/$orderId',
+  path: '/orders/$orderId',
+  getParentRoute: () => PharmacyRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/consultant': typeof ConsultantRouteWithChildren
+  '/insurer': typeof InsurerRouteWithChildren
+  '/onboarding': typeof OnboardingRoute
+  '/pharmacy': typeof PharmacyRouteWithChildren
+  '/select-role': typeof SelectRoleRoute
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/app/care': typeof AppCareRoute
+  '/app/meal': typeof AppMealRoute
+  '/app/pharmacy': typeof AppPharmacyRoute
+  '/app/privacy': typeof AppPrivacyRoute
+  '/app/records': typeof AppRecordsRoute
+  '/app/': typeof AppIndexRoute
+  '/consultant/': typeof ConsultantIndexRoute
+  '/insurer/': typeof InsurerIndexRoute
+  '/pharmacy/': typeof PharmacyIndexRoute
+  '/consultant/patients/$patientId': typeof ConsultantPatientsPatientIdRoute
+  '/pharmacy/orders/$orderId': typeof PharmacyOrdersOrderIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/onboarding': typeof OnboardingRoute
+  '/select-role': typeof SelectRoleRoute
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/app/care': typeof AppCareRoute
+  '/app/meal': typeof AppMealRoute
+  '/app/pharmacy': typeof AppPharmacyRoute
+  '/app/privacy': typeof AppPrivacyRoute
+  '/app/records': typeof AppRecordsRoute
+  '/app': typeof AppIndexRoute
+  '/consultant': typeof ConsultantIndexRoute
+  '/insurer': typeof InsurerIndexRoute
+  '/pharmacy': typeof PharmacyIndexRoute
+  '/consultant/patients/$patientId': typeof ConsultantPatientsPatientIdRoute
+  '/pharmacy/orders/$orderId': typeof PharmacyOrdersOrderIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/consultant': typeof ConsultantRouteWithChildren
+  '/insurer': typeof InsurerRouteWithChildren
+  '/onboarding': typeof OnboardingRoute
+  '/pharmacy': typeof PharmacyRouteWithChildren
+  '/select-role': typeof SelectRoleRoute
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/app/care': typeof AppCareRoute
+  '/app/meal': typeof AppMealRoute
+  '/app/pharmacy': typeof AppPharmacyRoute
+  '/app/privacy': typeof AppPrivacyRoute
+  '/app/records': typeof AppRecordsRoute
+  '/app/': typeof AppIndexRoute
+  '/consultant/': typeof ConsultantIndexRoute
+  '/insurer/': typeof InsurerIndexRoute
+  '/pharmacy/': typeof PharmacyIndexRoute
+  '/consultant/patients/$patientId': typeof ConsultantPatientsPatientIdRoute
+  '/pharmacy/orders/$orderId': typeof PharmacyOrdersOrderIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/consultant'
+    | '/insurer'
+    | '/onboarding'
+    | '/pharmacy'
+    | '/select-role'
+    | '/sign-in'
+    | '/sign-up'
+    | '/app/care'
+    | '/app/meal'
+    | '/app/pharmacy'
+    | '/app/privacy'
+    | '/app/records'
+    | '/app/'
+    | '/consultant/'
+    | '/insurer/'
+    | '/pharmacy/'
+    | '/consultant/patients/$patientId'
+    | '/pharmacy/orders/$orderId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/onboarding'
+    | '/select-role'
+    | '/sign-in'
+    | '/sign-up'
+    | '/app/care'
+    | '/app/meal'
+    | '/app/pharmacy'
+    | '/app/privacy'
+    | '/app/records'
+    | '/app'
+    | '/consultant'
+    | '/insurer'
+    | '/pharmacy'
+    | '/consultant/patients/$patientId'
+    | '/pharmacy/orders/$orderId'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/consultant'
+    | '/insurer'
+    | '/onboarding'
+    | '/pharmacy'
+    | '/select-role'
+    | '/sign-in'
+    | '/sign-up'
+    | '/app/care'
+    | '/app/meal'
+    | '/app/pharmacy'
+    | '/app/privacy'
+    | '/app/records'
+    | '/app/'
+    | '/consultant/'
+    | '/insurer/'
+    | '/pharmacy/'
+    | '/consultant/patients/$patientId'
+    | '/pharmacy/orders/$orderId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  ConsultantRoute: typeof ConsultantRouteWithChildren
+  InsurerRoute: typeof InsurerRouteWithChildren
+  OnboardingRoute: typeof OnboardingRoute
+  PharmacyRoute: typeof PharmacyRouteWithChildren
+  SelectRoleRoute: typeof SelectRoleRoute
+  SignInRoute: typeof SignInRoute
+  SignUpRoute: typeof SignUpRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +281,211 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consultant': {
+      id: '/consultant'
+      path: '/consultant'
+      fullPath: '/consultant'
+      preLoaderRoute: typeof ConsultantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insurer': {
+      id: '/insurer'
+      path: '/insurer'
+      fullPath: '/insurer'
+      preLoaderRoute: typeof InsurerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pharmacy': {
+      id: '/pharmacy'
+      path: '/pharmacy'
+      fullPath: '/pharmacy'
+      preLoaderRoute: typeof PharmacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/select-role': {
+      id: '/select-role'
+      path: '/select-role'
+      fullPath: '/select-role'
+      preLoaderRoute: typeof SelectRoleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-in': {
+      id: '/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof SignInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-up': {
+      id: '/sign-up'
+      path: '/sign-up'
+      fullPath: '/sign-up'
+      preLoaderRoute: typeof SignUpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/care': {
+      id: '/app/care'
+      path: '/care'
+      fullPath: '/app/care'
+      preLoaderRoute: typeof AppCareRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/meal': {
+      id: '/app/meal'
+      path: '/meal'
+      fullPath: '/app/meal'
+      preLoaderRoute: typeof AppMealRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/pharmacy': {
+      id: '/app/pharmacy'
+      path: '/pharmacy'
+      fullPath: '/app/pharmacy'
+      preLoaderRoute: typeof AppPharmacyRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/privacy': {
+      id: '/app/privacy'
+      path: '/privacy'
+      fullPath: '/app/privacy'
+      preLoaderRoute: typeof AppPrivacyRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/records': {
+      id: '/app/records'
+      path: '/records'
+      fullPath: '/app/records'
+      preLoaderRoute: typeof AppRecordsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/consultant/': {
+      id: '/consultant/'
+      path: '/'
+      fullPath: '/consultant/'
+      preLoaderRoute: typeof ConsultantIndexRouteImport
+      parentRoute: typeof ConsultantRoute
+    }
+    '/insurer/': {
+      id: '/insurer/'
+      path: '/'
+      fullPath: '/insurer/'
+      preLoaderRoute: typeof InsurerIndexRouteImport
+      parentRoute: typeof InsurerRoute
+    }
+    '/pharmacy/': {
+      id: '/pharmacy/'
+      path: '/'
+      fullPath: '/pharmacy/'
+      preLoaderRoute: typeof PharmacyIndexRouteImport
+      parentRoute: typeof PharmacyRoute
+    }
+    '/consultant/patients/$patientId': {
+      id: '/consultant/patients/$patientId'
+      path: '/patients/$patientId'
+      fullPath: '/consultant/patients/$patientId'
+      preLoaderRoute: typeof ConsultantPatientsPatientIdRouteImport
+      parentRoute: typeof ConsultantRoute
+    }
+    '/pharmacy/orders/$orderId': {
+      id: '/pharmacy/orders/$orderId'
+      path: '/orders/$orderId'
+      fullPath: '/pharmacy/orders/$orderId'
+      preLoaderRoute: typeof PharmacyOrdersOrderIdRouteImport
+      parentRoute: typeof PharmacyRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppCareRoute: typeof AppCareRoute
+  AppMealRoute: typeof AppMealRoute
+  AppPharmacyRoute: typeof AppPharmacyRoute
+  AppPrivacyRoute: typeof AppPrivacyRoute
+  AppRecordsRoute: typeof AppRecordsRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppCareRoute: AppCareRoute,
+  AppMealRoute: AppMealRoute,
+  AppPharmacyRoute: AppPharmacyRoute,
+  AppPrivacyRoute: AppPrivacyRoute,
+  AppRecordsRoute: AppRecordsRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
+interface ConsultantRouteChildren {
+  ConsultantIndexRoute: typeof ConsultantIndexRoute
+  ConsultantPatientsPatientIdRoute: typeof ConsultantPatientsPatientIdRoute
+}
+
+const ConsultantRouteChildren: ConsultantRouteChildren = {
+  ConsultantIndexRoute: ConsultantIndexRoute,
+  ConsultantPatientsPatientIdRoute: ConsultantPatientsPatientIdRoute,
+}
+
+const ConsultantRouteWithChildren = ConsultantRoute._addFileChildren(
+  ConsultantRouteChildren,
+)
+
+interface InsurerRouteChildren {
+  InsurerIndexRoute: typeof InsurerIndexRoute
+}
+
+const InsurerRouteChildren: InsurerRouteChildren = {
+  InsurerIndexRoute: InsurerIndexRoute,
+}
+
+const InsurerRouteWithChildren =
+  InsurerRoute._addFileChildren(InsurerRouteChildren)
+
+interface PharmacyRouteChildren {
+  PharmacyIndexRoute: typeof PharmacyIndexRoute
+  PharmacyOrdersOrderIdRoute: typeof PharmacyOrdersOrderIdRoute
+}
+
+const PharmacyRouteChildren: PharmacyRouteChildren = {
+  PharmacyIndexRoute: PharmacyIndexRoute,
+  PharmacyOrdersOrderIdRoute: PharmacyOrdersOrderIdRoute,
+}
+
+const PharmacyRouteWithChildren = PharmacyRoute._addFileChildren(
+  PharmacyRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  ConsultantRoute: ConsultantRouteWithChildren,
+  InsurerRoute: InsurerRouteWithChildren,
+  OnboardingRoute: OnboardingRoute,
+  PharmacyRoute: PharmacyRouteWithChildren,
+  SelectRoleRoute: SelectRoleRoute,
+  SignInRoute: SignInRoute,
+  SignUpRoute: SignUpRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
