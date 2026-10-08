@@ -135,7 +135,7 @@ confidence must be one of: High, Moderate, Low. If data is too thin, use Low.`,
           },
         ],
       );
-      if (!isUnsafe(ai.what_changed, ai.why_matters, ai.next_action) && ai.next_action) {
+      if (!(await isUnsafe(ai.what_changed, ai.why_matters, ai.next_action)) && ai.next_action) {
         out = ai;
         source = "ai";
       }
@@ -153,13 +153,10 @@ async function aiObject<T>(...args: Parameters<typeof import("./ai.server").aiOb
   const m = await import("./ai.server");
   return m.aiObject<T>(...args);
 }
-async function isUnsafeLazy(...t: string[]) {
+// Single safety rule shared with ai.server.ts (the stricter banned-terms list).
+async function isUnsafe(...t: string[]) {
   return (await import("./ai.server")).isUnsafe(...t);
 }
-function isUnsafe(...t: string[]) {
-  return /\b(dose|dosage|stop taking|discontinue|prescrib|cure|revers|diagnos)/i.test(t.join(" "));
-}
-void isUnsafeLazy;
 
 const MealSchema = z.object({
   foods: z.array(z.string()),
@@ -204,7 +201,7 @@ care_plan_note: max 40 words, plain English, non-judgemental, relate to the care
 If the image is not food, return an empty foods array.`,
         [{ role: "user", content: [{ type: "text", text: "Analyse this meal." }, { type: "image", image: data.image }] }],
       );
-      if (ai.foods.length && !isUnsafe(ai.care_plan_note)) {
+      if (ai.foods.length && !(await isUnsafe(ai.care_plan_note))) {
         result = { ...ai, calories: Math.round(ai.calories) };
         source = "ai";
       } else if (!ai.foods.length) {

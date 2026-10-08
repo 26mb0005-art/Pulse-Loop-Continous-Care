@@ -1,0 +1,11 @@
+{
+  "name": "PULSE LOOP",
+  "short_name": "PULSE LOOP",
+  "description": "Know what changed. Know what to do next.",
+  "start_url": "/app",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8faf8",
+  "theme_color": "#1f7a5c",
+  "icons": [{ "src": "/favicon.ico", "sizes": "48x48", "type": "image/x-icon" }]
+}
