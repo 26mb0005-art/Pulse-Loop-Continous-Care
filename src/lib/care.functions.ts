@@ -39,7 +39,7 @@ export const generateInsight = createServerFn({ method: "POST" })
       supabase.from("prescriptions").select("*").eq("patient_id", patient.id).order("prescribed_on", { ascending: false }).limit(1),
       supabase.from("orders").select("status,prescription_id").eq("patient_id", patient.id),
     ]);
-    const signals = ((rawSignals ?? []) as Signal[]).filter((s) => active.has(typeToConsent[s.signal_type]));
+    const signals = ((rawSignals ?? []) as Signal[]).filter((s) => active.has(typeToConsent[s.signal_type] ?? ""));
     const kpis = (kpiRows ?? []) as Kpi[];
     const inputsUsed = [...new Set(signals.map((s) => s.signal_type))];
 
