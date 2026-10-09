@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Navigate, useNavigate } from "@tanstack/react-router";
-import { Building2, Check, Pill, Stethoscope, UserRound } from "lucide-react";
+import { Building2, Check, HeartHandshake, Pill, Stethoscope, UserRound } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { AuthLayout } from "@/components/shell/AuthLayout";
@@ -47,6 +47,13 @@ const OPTIONS: {
     copy: "See programme and payment status that members have consented to.",
     org: "Joins Apex Health (demo)",
     icon: Building2,
+  },
+  {
+    role: "caregiver",
+    title: "Family / Caregiver",
+    copy: "Support a family member between doctor visits, with their permission.",
+    org: "You'll need an invite code from the patient",
+    icon: HeartHandshake,
   },
 ];
 

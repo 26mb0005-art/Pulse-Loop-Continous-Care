@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as ConsultantRouteImport } from './routes/consultant'
+import { Route as FamilyRouteImport } from './routes/family'
 import { Route as InsurerRouteImport } from './routes/insurer'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PharmacyRouteImport } from './routes/pharmacy'
@@ -43,6 +44,11 @@ const AppRoute = AppRouteImport.update({
 const ConsultantRoute = ConsultantRouteImport.update({
   id: '/consultant',
   path: '/consultant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FamilyRoute = FamilyRouteImport.update({
+  id: '/family',
+  path: '/family',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InsurerRoute = InsurerRouteImport.update({
@@ -136,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/consultant': typeof ConsultantRouteWithChildren
+  '/family': typeof FamilyRoute
   '/insurer': typeof InsurerRouteWithChildren
   '/onboarding': typeof OnboardingRoute
   '/pharmacy': typeof PharmacyRouteWithChildren
@@ -156,6 +163,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/family': typeof FamilyRoute
   '/onboarding': typeof OnboardingRoute
   '/select-role': typeof SelectRoleRoute
   '/sign-in': typeof SignInRoute
@@ -177,6 +185,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/consultant': typeof ConsultantRouteWithChildren
+  '/family': typeof FamilyRoute
   '/insurer': typeof InsurerRouteWithChildren
   '/onboarding': typeof OnboardingRoute
   '/pharmacy': typeof PharmacyRouteWithChildren
@@ -201,6 +210,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/consultant'
+    | '/family'
     | '/insurer'
     | '/onboarding'
     | '/pharmacy'
@@ -221,6 +231,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/family'
     | '/onboarding'
     | '/select-role'
     | '/sign-in'
@@ -241,6 +252,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/consultant'
+    | '/family'
     | '/insurer'
     | '/onboarding'
     | '/pharmacy'
@@ -264,6 +276,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
   ConsultantRoute: typeof ConsultantRouteWithChildren
+  FamilyRoute: typeof FamilyRoute
   InsurerRoute: typeof InsurerRouteWithChildren
   OnboardingRoute: typeof OnboardingRoute
   PharmacyRoute: typeof PharmacyRouteWithChildren
@@ -293,6 +306,13 @@ declare module '@tanstack/react-router' {
       path: '/consultant'
       fullPath: '/consultant'
       preLoaderRoute: typeof ConsultantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/family': {
+      id: '/family'
+      path: '/family'
+      fullPath: '/family'
+      preLoaderRoute: typeof FamilyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/insurer': {
@@ -480,6 +500,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
   ConsultantRoute: ConsultantRouteWithChildren,
+  FamilyRoute: FamilyRoute,
   InsurerRoute: InsurerRouteWithChildren,
   OnboardingRoute: OnboardingRoute,
   PharmacyRoute: PharmacyRouteWithChildren,

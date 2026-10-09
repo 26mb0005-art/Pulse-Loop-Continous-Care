@@ -10,7 +10,7 @@ on conflict (id) do nothing;
 -- 2. Demo patient linkage. Lets one designated auth account (signed up through the normal
 --    Supabase Auth flow) become the synthetic demo patient. No password or session is created
 --    here, no RLS policy changes, and only patients flagged is_demo can ever be linked.
-create table public.demo_accounts (
+create table if not exists public.demo_accounts (
   email text primary key,
   patient_id uuid not null unique references public.patients(id) on delete cascade
 );

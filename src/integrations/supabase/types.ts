@@ -258,6 +258,29 @@ export type Database = {
           },
         ]
       }
+      demo_accounts: {
+        Row: {
+          email: string
+          patient_id: string
+        }
+        Insert: {
+          email: string
+          patient_id: string
+        }
+        Update: {
+          email?: string
+          patient_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "demo_accounts_patient_id_fkey"
+            columns: ["patient_id"]
+            isOneToOne: true
+            referencedRelation: "patients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       health_signals: {
         Row: {
           id: string
@@ -700,6 +723,7 @@ export type Database = {
         Args: { _order: string; _status: string }
         Returns: undefined
       }
+      claim_demo_patient: { Args: never; Returns: boolean }
       claim_role: {
         Args: { _role: Database["public"]["Enums"]["app_role"] }
         Returns: undefined
@@ -708,7 +732,6 @@ export type Database = {
         Args: { _category: string; _pid: string }
         Returns: boolean
       }
-      claim_demo_patient: { Args: never; Returns: boolean }
       consultant_review: {
         Args: {
           _followup: boolean
@@ -761,7 +784,7 @@ export type Database = {
       }
     }
     Enums: {
-      app_role: "patient" | "consultant" | "pharmacy" | "insurer"
+      app_role: "patient" | "consultant" | "pharmacy" | "insurer" | "caregiver"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -889,7 +912,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["patient", "consultant", "pharmacy", "insurer"],
+      app_role: ["patient", "consultant", "pharmacy", "insurer", "caregiver"],
     },
   },
 } as const

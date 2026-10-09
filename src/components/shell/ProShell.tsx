@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { ROLE_LABEL, useAuth, type AppRole } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 
-type ProRole = Exclude<AppRole, "patient">;
+type ProRole = Exclude<AppRole, "patient" | "caregiver">;
 
 /** The organisation the signed-in professional belongs to (via org_members). */
 export function useMyOrg(role: ProRole) {
