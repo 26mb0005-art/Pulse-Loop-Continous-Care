@@ -12,6 +12,9 @@ import { RequireRole } from "@/components/shell/RequireRole";
 import { StatusPill } from "@/components/common/StatusPill";
 import { CardSkeleton, ErrorState, InlineSpinner } from "@/components/common/states";
 import { supabase } from "@/integrations/supabase/client";
+// New caregiver tables/RPCs aren't in the generated types yet.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const db = supabase as any;
 import { fmtAgo, fmtDateTime } from "@/lib/format";
 import { QUICK_MESSAGES, t, type Lang } from "@/lib/family";
 
@@ -47,7 +50,7 @@ function FamilyPage() {
   const dash = useQuery({
     queryKey: ["caregiver-dashboard"],
     queryFn: async () => {
-      const { data, error } = await supabase.rpc("caregiver_dashboard");
+      const { data, error } = await db.rpc("caregiver_dashboard");
       if (error) throw new Error(error.message);
       return data as unknown as Dash | null;
     },
@@ -90,7 +93,7 @@ function AcceptInvite() {
   const [code, setCode] = useState("");
   const accept = useMutation({
     mutationFn: async () => {
-      const { error } = await supabase.rpc("accept_caregiver_invite", { _code: code });
+      const { error } = await db.rpc("accept_caregiver_invite", { _code: code });
       if (error) throw new Error(error.message);
     },
     onSuccess: () => {
@@ -276,7 +279,7 @@ function Updates({ patientId, lang }: { patientId: string; lang: Lang }) {
   const msgs = useQuery({
     queryKey: ["support-messages", patientId],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from("support_messages").select("*").eq("patient_id", patientId).order("created_at", { ascending: false }).limit(6);
       if (error) throw new Error(error.message);
       return data as Msg[];
@@ -305,7 +308,7 @@ function SendSupport({ patientId, lang }: { patientId: string; lang: Lang }) {
   const [body, setBody] = useState(QUICK_MESSAGES.encourage[lang]);
   const send = useMutation({
     mutationFn: async () => {
-      const { error } = await supabase.rpc("send_support_message", { _pid: patientId, _kind: kind, _body: body });
+      const { error } = await db.rpc("send_support_message", { _pid: patientId, _kind: kind, _body: body });
       if (error) throw new Error(error.message);
     },
     onSuccess: () => {
