@@ -15,6 +15,13 @@
       "when": 1791540000000,
       "tag": "0001_demo_support",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791525113233,
+      "tag": "0002_add_caregiver_role",
+      "breakpoints": true
     }
   ]
 }
