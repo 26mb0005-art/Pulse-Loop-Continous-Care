@@ -15,11 +15,12 @@ import type { Enums } from "@/integrations/supabase/types";
 
 export type AppRole = Enums<"app_role">;
 
-export const ROLE_HOME: Record<AppRole, "/app" | "/consultant" | "/pharmacy" | "/insurer"> = {
+export const ROLE_HOME: Record<AppRole, "/app" | "/consultant" | "/pharmacy" | "/insurer" | "/family"> = {
   patient: "/app",
   consultant: "/consultant",
   pharmacy: "/pharmacy",
   insurer: "/insurer",
+  caregiver: "/family",
 };
 
 export const ROLE_LABEL: Record<AppRole, string> = {
@@ -27,6 +28,7 @@ export const ROLE_LABEL: Record<AppRole, string> = {
   consultant: "Consultant",
   pharmacy: "Pharmacy",
   insurer: "Insurer",
+  caregiver: "Family / Caregiver",
 };
 
 type AuthState = {
